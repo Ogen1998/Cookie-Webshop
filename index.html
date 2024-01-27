@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="En online-munkbutik som erbjuder 10 läckra munkar">
+    <meta property="og:title" content="Gottfrids munkfabrik">
+    <meta property="description" content="En online-munkbutik som erbjuder 10 läckra munkar">
+    <meta property="og:url" content="index.html">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
+    <style>
+      /* Chrome, Safari, Edge, Opera för att ta bort input pilar */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox för att ta bort input pilar*/
+      input[type='number'] {
+        -moz-appearance: textfield;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!--Header-->
+      <header
+        id="header"
+        class="flex justify-between items-center w-screen bg-white h-20 fixed top-0 left-0 z-50"
+      ></header>
+
+      <!--Sort-->
+      <section class="flex flex-wrap gap-4 justify-around mt-24 font-fontKdam">
+        <button
+          id="sortName"
+          class="sort-button bg-gray-200 border-2 border-black p-1 pl-5 pr-5 rounded-2xl capitalize hover:scale-125 ease-in-out transition-transform duration-500"
+        >
+          namn
+        </button>
+        <button
+          id="sortCategory"
+          class="sort-button bg-gray-200 border-2 border-black p-1 pl-5 pr-5 rounded-2xl capitalize hover:scale-125 ease-in-out transition-transform duration-500"
+        >
+          kategori
+        </button>
+        <button
+          id="sortRating"
+          class="sort-button bg-gray-200 border-2 border-black p-1 pl-5 pr-5 rounded-2xl capitalize hover:scale-125 ease-in-out transition-transform duration-500"
+        >
+          betyg
+        </button>
+        <button
+          id="sortPrice"
+          class="sort-button bg-gray-200 border-2 border-black p-1 pl-5 pr-5 rounded-2xl capitalize hover:scale-125 ease-in-out transition-transform duration-500"
+        >
+          pris
+        </button>
+      </section>
+
+      <!--Page Section-->
+      <section id="donuts" class="flex flex-wrap justify-start bg-white h-screen pt-20"></section>
+
+      <!--Price-->
+      <div id="price"></div>
+
+      <!--Kundkorg-->
+      <section
+        id="cartSection"
+        class="flex flex-col gap-10 items-center bg-white font-fontKdam fixed top-0 left-0 w-screen h-screen overflow-auto z-40 hidden"
+      >
+        <h2 class="mt-32 text-black text-7xl">Varukorg</h2>
+        <div id="updateCart" class="flex flex-col gap-10"></div>
+        <article id="kundInformation" class="flex flex-col items-center gap-10">
+          <h2 class="mt-10 text-black text-5xl">Kundinformation</h2>
+          <form class="flex flex-col items-center gap-4 mb-14">
+            <!--Förnamn-->
+            <div class="border-2 p-1 border-black rounded-lg">
+              <label for="name" class="hidden">namn</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Förnamn"
+                class="text-center placeholder:text-center hover:bg-gray-100"
+              >
+            </div>
+            <!--Efternamn-->
+            <div class="border-2 p-1 border-black rounded-lg">
+              <label for="surname" class="hidden">efternamn</label>
+              <input
+                type="text"
+                id="surname"
+                name="surname"
+                placeholder="Efternamn"
+                class="text-center placeholder:text-center hover:bg-gray-100"
+              >
+            </div>
+            <!--Adress-->
+            <div class="border-2 p-1 border-black rounded-lg">
+              <label for="adress" class="hidden">adress</label>
+              <input
+                type="text"
+                id="adress"
+                name="adress"
+                placeholder="Adress"
+                class="text-center placeholder:text-center hover:bg-gray-100"
+              >
+            </div>
+            <!--Postnummer-->
+            <div class="border-2 p-1 border-black rounded-lg">
+              <label for="postnumber" class="hidden">postnummer</label>
+              <input
+                type="number"
+                id="postnumber"
+                name="postnumber"
+                placeholder="Postnummer"
+                oninput="validateNumberInput(this)"
+                class="text-center placeholder:text-center hover:bg-gray-100"
+              >
+            </div>
+            <!--Postor-->
+            <div class="border-2 p-1 border-black rounded-lg">
+              <label for="postaladdress" class="hidden">postort</label>
+              <input
+                type="text"
+                id="postaladdress"
+                name="postaladdress"
+                placeholder="Post ort"
+                class="text-center placeholder:text-center hover:bg-gray-100"
+              >
+            </div>
+            <!--Portkod-->
+            <div class="border-2 p-1 border-black rounded-lg">
+              <label for="portcode" class="hidden">portkod</label>
+              <input
+                type="number"
+                id="portcode"
+                name="portcode"
+                placeholder="Ev. portkod"
+                oninput="validateNumberInput(this)"
+                class="text-center placeholder:text-center hover:bg-gray-100"
+              >
+            </div>
+            <!--Nummer-->
+            <div class="border-2 p-1 border-black rounded-lg">
+              <label for="phone" class="hidden">nummer</label>
+              <input
+                type="number"
+                id="phone"
+                name="phone"
+                placeholder="Mobilnummer"
+                oninput="validateNumberInput(this)"
+                class="text-center placeholder:text-center hover:bg-gray-100"
+              >
+            </div>
+            <!--Email-->
+            <div class="border-2 p-1 border-black rounded-lg">
+              <label for="email" class="hidden">email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="E-mail adress"
+                class="text-center placeholder:text-center hover:bg-gray-100"
+              >
+            </div>
+            <!--BETALSÄTT-->
+            <div class="slector flex flex-col items-center gap-2">
+              <h3>Välj betalsätt:</h3>
+              <div class="flex justify-between gap-4">
+                <label>
+                  <input type="radio" name="payment-option" value="card" checked>
+                  <span>Kort</span>
+                </label>
+                <label>
+                  <input id="radioInvoice" type="radio" name="payment-option" value="invoice">
+                  <span>Faktura</span>
+                </label>
+              </div>
+
+              <div id="noInvoice" class="text-red-500"></div>
+
+              <div id="invoiceForm" class="hidden">
+                <label for="personalNumber">Svenskt personnummer:</label>
+                <input
+                  type="text"
+                  id="personalNumber"
+                  name="personalNumber"
+                  placeholder="YYYYMMDD-XXXX"
+                  class="text-center placeholder:text-center hover:bg-gray-100 border"
+                >
+              </div>
+            </div>
+
+            <div id="cardForm" class="flex flex-col border-2">
+              <label for="cardOwner" class="hidden">kortinnehavare</label>
+              <input
+                type="text"
+                id="cardOwner"
+                name="cardOwner"
+                placeholder="Kortinnehavare"
+                class="text-center placeholder:text-center hover:bg-gray-100 border-b"
+              >
+
+              <label for="cardnumber" class="hidden">kortnummer</label>
+              <input
+                type="number"
+                id="cardnumber"
+                name="cardnumber"
+                placeholder="Kort nummer"
+                oninput="validateNumberInput(this)"
+                class="text-center placeholder:text-center hover:bg-gray-100 border-b"
+              >
+
+              <div class="flex">
+                <label for="month" class="hidden">månad</label>
+                <input
+                  type="number"
+                  id="month"
+                  name="month"
+                  placeholder="MM"
+                  class="text-center placeholder:text-center hover:bg-gray-100 border-r"
+                >
+
+                <label for="year" class="hidden">år</label>
+                <input
+                  type="number"
+                  id="year"
+                  name="year"
+                  placeholder="YY"
+                  class="text-center placeholder:text-center hover:bg-gray-100"
+                >
+              </div>
+              <label for="cvc" class="hidden">cvc</label>
+              <input
+                type="number"
+                id="cvc"
+                name="cvc"
+                placeholder="CVC"
+                oninput="validateNumberInput(this)"
+                class="text-center placeholder:text-center hover:bg-gray-100 border-t"
+              >
+            </div>
+
+            <div id="rabattkod" class="border-2 p-1 border-black rounded-lg">
+              <label for="coupon" class="hidden">rabattkod:</label>
+              <input
+                type="text"
+                id="coupon"
+                name="coupon"
+                placeholder="Ange rabattkod"
+                class="text-center placeholder:text-center hover:bg-gray-100"
+              >
+            </div>
+
+            <div id="checkBox" class="flex flex-col">
+              <div>
+                <label for="checkPerson">Godkänner du behandling av personuppgifter? </label>
+                <input type="checkbox" id="checkPerson" name="checkPerson" class="hover:bg-gray-100">
+              </div>
+              <div>
+                <label for="checkAd">Godkänner du beställning av nyhetsbrev? </label>
+                <input type="checkbox" id="checkAd" name="checkAd" class="hover:bg-gray-100" checked>
+              </div>
+            </div>
+
+            <div id="pay" class="">
+              <button
+                disabled
+                id="payButton"
+                type="button"
+                class="bg-orange-400 p-2 pl-10 pr-10 rounded-2xl text-3xl uppercase hover:animate-bounce disabled:bg-gray-500 disabled:cursor-not-allowed disabled:animate-none"
+              >
+                betala
+              </button>
+            </div>
+
+            <div id="reset">
+              <button
+                id="resetButton"
+                type="reset"
+                class="bg-red-400 p-2 pl-10 pr-10 rounded-2xl text-lg uppercase hover:bg-red-500"
+              >
+                Återställ beställning
+              </button>
+            </div>
+
+            <div id="errorForm" class="text-red-500"></div>
+          </form>
+        </article>
+      </section>
+    </main>
+
+    <script src="src/script.js" type="module"></script>
+  </body>
+</html>
